@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="imgs/logo.png" type="image/png">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <h1>Games</h1>
+    <div class="games-container">
+        <div class="game-button">
+            <a href="books/stickmansurvival.html">
+                <img src="imgs/gcovers/stickmansurvival.jpg" alt="Game 1 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/doge2048.html">
+                <img src="imgs/gcovers/doge2048.jpg" alt="Game 2 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/drift boss.html">
+                <img src="imgs/gcovers/driftboss.png" alt="Game 3 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/basket random.html">
+                <img src="imgs/gcovers/basketrandom.jpeg" alt="Game 4 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/soccer random.html">
+                <img src="imgs/gcovers/soccerrandom.png" alt="Game 5 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/basketball stars.html">
+                <img src="imgs/gcovers/basketballstars.png" alt="Game 6 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/friday night funkin.html">
+                <img src="imgs/gcovers/fridaynightfunkin.png" alt="Game 7 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/10mtd.html">
+                <img src="imgs/gcovers/10minstilldawn.png" alt="Game 8 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/2048.html">
+                <img src="imgs/gcovers/2048.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/2048 Multitask.html">
+                <img src="imgs/gcovers/2048Multitask.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/9007199254740992.html">
+                <img src="imgs/gcovers/9007199254740992.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/1v1lol.html">
+                <img src="imgs/gcovers/1v1lol.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/doge miner.html">
+                <img src="imgs/gcovers/dogeminer.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/monkey mart.html">
+                <img src="imgs/gcovers/monkeymart.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/csgoclicker.html">
+                <img src="imgs/gcovers/csgoclicker.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/bloonstd.html">
+                <img src="imgs/gcovers/bloonstd.jpg" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/bloonstd2.html">
+                <img src="imgs/gcovers/bloonstd2.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/Cubefield.html">
+                <img src="imgs/gcovers/cubefield.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/flappy 2048.html">
+                <img src="imgs/gcovers/flappy2048.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/edge surf.html">
+                <img src="imgs/gcovers/edgesurf.png" alt="Game 9 Cover">
+            </a>
+        </div>
+        <div class="game-button">
+            <a href="books/bloonstd2.html">
+                <img src="imgs/gcovers/dealornodeal.jpg" alt="Game 9 Cover">
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="app.js"></script>
+    <a href="index.html"><button class="rounded-button">Back to Homepage</button></a>
+    <script>
+        function loadSettings() {
+            const theme = localStorage.getItem('theme') || 'default';
+            const language = localStorage.getItem('language') || 'en';
+            const particleDensity = localStorage.getItem('particleDensity') || 50;
+
+            document.body.className = theme;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                el.textContent = translations[language][key];
+            });
+
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": particleDensity,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "size": {
+                        "value": 1.5,
+                        "random": false
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false
+                    },
+                    "line_linked": {
+                        "enable": false,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
+
+        const translations = {
+            en: {
+                title: "Galaxy Settings",
+                themeLabel: "Theme:",
+                languageLabel: "Language:",
+                particleLabel: "Particle Density:"
+            },
+            es: {
+                title: "Configuración de Galaxy",
+                themeLabel: "Tema:",
+                languageLabel: "Idioma:",
+                particleLabel: "Densidad de Partículas:"
+            },
+            fr: {
+                title: "Paramètres de Galaxy",
+                themeLabel: "Thème:",
+                languageLabel: "Langue:",
+                particleLabel: "Densité de Particules:"
+            },
+            de: {
+                title: "Galaxy Einstellungen",
+                themeLabel: "Thema:",
+                languageLabel: "Sprache:",
+                particleLabel: "Teilchendichte:"
+            },
+            jp: {
+                title: "ギャラクシー設定",
+                themeLabel: "テーマ:",
+                languageLabel: "言語:",
+                particleLabel: "粒子密度:"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            resetIdleTimer();
+            particlesJS.load('particles-js', 'particles.json', function() {
+                console.log('callback - particles.js config loaded');
+            });
+        });
+
+        document.addEventListener('mousemove', resetIdleTimer);
+        document.addEventListener('keydown', resetIdleTimer);
+    </script>
+</body>
+</html>

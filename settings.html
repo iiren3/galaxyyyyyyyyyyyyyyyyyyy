@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <h1 data-translate="title">Galaxy Settings</h1>
+    <div class="settings-container">
+        <div class="setting">
+            <label for="theme-select" data-translate="theme-label">Theme:</label>
+            <select id="theme-select" onchange="updateTheme()">
+                <option value="default">Default</option>
+                <option value="dark">Dark</option>
+                <option value="light">Grey</option>
+            </select>
+        </div>
+        <div class="setting">
+            <label for="language-select" data-translate="language-label">Language:</label>
+            <select id="language-select" onchange="updateLanguage()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="jp">Japanese</option>
+            </select>
+        </div>
+        <div class="setting">
+            <label for="particle-density" data-translate="particle-label">Particle Density:</label>
+            <input type="range" id="particle-density" min="0" max="100" value="50" oninput="updateParticles()">
+        </div>
+        <a href="index.html"><button class="rounded-button">Back to Homepage</button></a>
+        <a href="books.html"><button class="rounded-button">Games</button></a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        const translations = {
+            en: {
+                title: "Galaxy Settings",
+                themeLabel: "Theme:",
+                languageLabel: "Language:",
+                particleLabel: "Particle Density:"
+            },
+            es: {
+                title: "Configuración de Galaxy",
+                themeLabel: "Tema:",
+                languageLabel: "Idioma:",
+                particleLabel: "Densidad de Partículas:"
+            },
+            fr: {
+                title: "Paramètres de Galaxy",
+                themeLabel: "Thème:",
+                languageLabel: "Langue:",
+                particleLabel: "Densité de Particules:"
+            },
+            de: {
+                title: "Galaxy Einstellungen",
+                themeLabel: "Thema:",
+                languageLabel: "Sprache:",
+                particleLabel: "Teilchendichte:"
+            },
+            jp: {
+                title: "ギャラクシー設定",
+                themeLabel: "テーマ:",
+                languageLabel: "言語:",
+                particleLabel: "粒子密度:"
+            }
+        };
+
+        function updateTheme() {
+            const theme = document.getElementById('theme-select').value;
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+        }
+
+        function updateLanguage() {
+            const language = document.getElementById('language-select').value;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                el.textContent = translations[language][key];
+            });
+            localStorage.setItem('language', language);
+        }
+
+        function updateParticles() {
+            const density = document.getElementById('particle-density').value;
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": density,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "size": {
+                        "value": 1.5,
+                        "random": false
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false
+                    },
+                    "line_linked": {
+                        "enable": false,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            localStorage.setItem('particleDensity', density);
+        }
+
+        function setBlueGradient() {
+            document.body.style.background = 'linear-gradient(135deg, #4ca1af, #2c3e50)'; // Light and dark blue gradient
+            setTimeout(() => {
+                document.body.style.background = ''; // Reset to original background
+                document.body.className = localStorage.getItem('theme') || 'default'; // Reapply the saved theme class
+            }, 10000); // Revert back to original gradient after 10 seconds
+        }
+
+        let idleTimer;
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(setBlueGradient, 60000); // 1 minute of idle time
+        }
+
+        function loadSettings() {
+            const theme = localStorage.getItem('theme') || 'default';
+            const language = localStorage.getItem('language') || 'en';
+            const particleDensity = localStorage.getItem('particleDensity') || 50;
+
+            document.getElementById('theme-select').value = theme;
+            document.getElementById('language-select').value = language;
+            document.getElementById('particle-density').value = particleDensity;
+
+            updateTheme();
+            updateLanguage();
+            updateParticles();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            resetIdleTimer();
+            particlesJS.load('particles-js', 'particles.json', function() {
+                console.log('callback - particles.js config loaded');
+            });
+        });
+
+        document.addEventListener('mousemove', resetIdleTimer);
+        document.addEventListener('keydown', resetIdleTimer);
+
+    </script>
+    
+</body>
+</html>
